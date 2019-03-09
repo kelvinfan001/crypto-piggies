@@ -99,7 +99,7 @@ contract('PiggyBankContract', function () {
 
         await contract.createPiggyBank(10, {from: accounts[0]});
         await contract.deposit({value: 10, from: accounts[0]});
-        
+
         try {
             await contract.withdraw(accounts[0], {from: accounts[0]});
         } catch (error) {
@@ -109,5 +109,23 @@ contract('PiggyBankContract', function () {
         let afterBalance = await contract.viewBalance({from: accounts[0]});
 
         assert.equal(afterBalance.valueOf(), 0, "Balance in piggy bank should be 0 after being withdrawn");
+    });
+
+    it('views account balance after a successful withdrawal', async function(){
+        const accounts = await web3.eth.getAccounts();
+        const contract = await PiggyBank.deployed();
+
+        await contract.createPiggyBank(10, {from: accounts[0]});
+        await contract.deposit({value: 10, from: accounts[0]});
+
+        try {
+            await contract.withdraw(accounts[1], {from: accounts[0]});
+        } catch (error) {
+            err = error;
+        }
+
+        let accountBalance = await web3.eth.getBalance(accounts[1]) / 10**18; // the account balance of the receiving account
+
+        assert.equal(accountBalance.valueOf(), 110, "Balance in receiving account should be 110");
     });
 });

@@ -4,7 +4,7 @@ if ( typeof web3 != 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 }
 
-var contractAddress = web3.utils.toChecksumAddress('0x6258585D0CF5AcDB6eE09d162b3c05675CAe1142');
+var contractAddress = web3.utils.toChecksumAddress('0xB4b4D2dC9128db539F149845f933da91CdfEC6c8');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
