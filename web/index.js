@@ -28,7 +28,7 @@ $('#create-piggy-form').submit(function() {
         return;
     }
 
-    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).send({from: creatorAddress},
+    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).call({from: creatorAddress},
         function (error, result) {
             if (error) {
                 console.log("error:" + error);
