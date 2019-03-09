@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Feral Piggy Bank</title>
+</head>
+<body>
+<h1>Welcome to your Decentralized Piggy Bank!</h1>
+
+<h2>Put money in your piggy bank!</h2>
+<form id="contract-form">
+    <div class="form-group">
+        <label>Sender ETH Address</label>
+        <input value="" type="text" class="form-control" id="fromAddress" aria-describedby="fromAddressHelp" placeholder="Enter your address" required="true">
+        <small id="fromAddressHelp" class="form-text text-muted">Enter your wallet address. Note: you will need to approve this with your private key.</small>
+    </div>
+    <div class="form-group">
+        <label for="Amount">Amount</label>
+        <input value="" type="text" class="form-control" id="amount" aria-describedby="amountHelp" placeholder="Amount to send in ETH" required="true">
+        <small id="amountHelp" class="form-text text-muted">How much you want to send in ETH.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div id="deposit-result">Click the Submit button to deposit your ETH to the piggy bank.</div>
+</form>
+<hr>
+<h2>Balance:</h2>
+<form id="get-balance-form">
+    <button type="submit" class="btn btn-primary">Get Balance</button>
+    <div id="the-balance"></div>
+</form>
+<h2>Approver:</h2>
+<form id="approver-form">
+    <button type="submit" class="btn btn-primary">Get Address of Approver</button>
+</form>
+
+<h2>Withdraw:</h2>
+<form id="withdraw-form">
+    <div class="form-group">
+        <label>Withdraw to this account:</label>
+        <input value="" type="text" class="form-control" id="withdrawAddress" placeholder="Enter address to withdraw your money to" required="true">
+    </div>
+    <div id="withdraw-message"></div>
+    <button type="submit" class="btn btn-primary">Withdraw</button>
+</form>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="web3.min.js"></script>
+<script src="PiggyBankABI.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="index.js"></script>
+
+</body>
+</html>
