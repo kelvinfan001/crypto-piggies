@@ -4,7 +4,7 @@ if ( typeof web3 != 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 }
 
-var contractAddress = web3.utils.toChecksumAddress('0x3C6C603478Aba0A6b118E966E058eAf24ba90058');
+var contractAddress = web3.utils.toChecksumAddress('0x6258585D0CF5AcDB6eE09d162b3c05675CAe1142');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
@@ -76,7 +76,7 @@ $('#get-balance-form').submit(function(){
         function(error, result) {
             if (error)  {
                 console.log("error: " + error);
-                $('#the-balance').html('<b>An error occurred</b>');
+                $('#the-balance').html('<b>This address does not have a piggy bank.</b>');
             } else {
                 console.log("balance: "+ result);
                 $('#the-balance').html('<b>Current Balance: </b>' + web3.utils.fromWei(result, "ether"));
@@ -96,7 +96,7 @@ $('#withdraw-form').submit(function(){
                 console.log("Bad stuff happened: " + error);
                 $('#withdraw-message').html('You have not reached your goal.');
             } else {
-                $('#withdraw-message').html('Withdraw successful: ' + result);
+                $('#withdraw-message').html('Withdraw successful!');
             }
         });
-})
+});

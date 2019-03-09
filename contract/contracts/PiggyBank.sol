@@ -31,6 +31,7 @@ contract PiggyBank {
         uint256 balance = accountsToBalances[msg.sender];
 
         require(balance >= goal, "You have not reached your goal yet."); // make sure that the goal has been reached.
+        accountsToBalances[msg.sender] = 0;
         _receiver.transfer(balance);
     }
 
