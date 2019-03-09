@@ -3507,10 +3507,22 @@
       "links": {},
       "address": "0xB4b4D2dC9128db539F149845f933da91CdfEC6c8",
       "transactionHash": "0x89135d614f626e606f18bf35d5cb35b698358f7e592a0cbfee2179a9e1af66f2"
+    },
+    "1552167833303": {
+      "events": {},
+      "links": {},
+      "address": "0x02D5F17aA52cf21b14a00CA0c870dfF076a01Ab3",
+      "transactionHash": "0x89135d614f626e606f18bf35d5cb35b698358f7e592a0cbfee2179a9e1af66f2"
+    },
+    "1552168077339": {
+      "events": {},
+      "links": {},
+      "address": "0x1654A90A9659d5482969F05F30350405f29b9310",
+      "transactionHash": "0x89135d614f626e606f18bf35d5cb35b698358f7e592a0cbfee2179a9e1af66f2"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-03-09T20:00:05.290Z",
+  "updatedAt": "2019-03-09T21:48:11.646Z",
   "devdoc": {
     "methods": {
       "createPiggyBank(uint256)": {

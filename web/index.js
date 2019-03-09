@@ -4,7 +4,7 @@ if ( typeof web3 != 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 }
 
-var contractAddress = web3.utils.toChecksumAddress('0xB4b4D2dC9128db539F149845f933da91CdfEC6c8');
+var contractAddress = web3.utils.toChecksumAddress('0x1654A90A9659d5482969F05F30350405f29b9310');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
@@ -28,7 +28,7 @@ $('#create-piggy-form').submit(function() {
         return;
     }
 
-    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).call({from: creatorAddress},
+    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).send({from: creatorAddress},
         function (error, result) {
             if (error) {
                 console.log("error:" + error);
@@ -90,7 +90,7 @@ $('#withdraw-form').submit(function(){
     var withdrawFromAddress = $('#withdrawFromAddress').val();
     var withdrawToAddress = $('#withdrawToAddress').val();
 
-    PiggyBankContract.methods.withdraw(withdrawToAddress).call({from: withdrawFromAddress},
+    PiggyBankContract.methods.withdraw(withdrawToAddress).send({from: withdrawFromAddress},
         function(error, result) {
             if (error) {
                 console.log("Bad stuff happened: " + error);
