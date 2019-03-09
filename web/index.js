@@ -80,9 +80,10 @@ $('#get-balance-form').submit(function(){
 $('#withdraw-form').submit(function(){
     event.preventDefault();
 
-    var withdrawAddress = $('#withdrawAddress').val();
+    var withdrawFromAddress = $('#withdrawFromAddress').val();
+    var withdrawToAddress = $('#withdrawToAddress').val();
 
-    PiggyBankContract.methods.withdraw(withdrawAddress).call({from: withdrawAddress},
+    PiggyBankContract.methods.withdraw(withdrawToAddress).call({from: withdrawFromAddress},
         function(error, result) {
             if (error) {
                 console.log("Bad stuff happened: " + error);

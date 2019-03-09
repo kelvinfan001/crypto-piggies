@@ -41,22 +41,25 @@
     <button type="submit" class="btn btn-primary">Submit</button>
     <div id="deposit-result">Click the Submit button to deposit your ETH to the piggy bank.</div>
 </form>
+
 <hr>
+
 <h2>Balance:</h2>
 <form id="get-balance-form">
     <button type="submit" class="btn btn-primary">Get Balance</button>
     <div id="the-balance"></div>
 </form>
-<h2>Approver:</h2>
-<form id="approver-form">
-    <button type="submit" class="btn btn-primary">Get Address of Approver</button>
-</form>
 
 <h2>Withdraw:</h2>
 <form id="withdraw-form">
     <div class="form-group">
+        <label>Withdraw from this piggy bank:</label>
+        <input value="" type="text" class="form-control" id="withdrawFromAddress" placeholder="Enter address of the owner of the piggy bank to withdraw from" required="true">
+    </div>
+
+    <div class="form-group">
         <label>Withdraw to this account:</label>
-        <input value="" type="text" class="form-control" id="withdrawAddress" placeholder="Enter address to withdraw your money to" required="true">
+        <input value="" type="text" class="form-control" id="withdrawToAddress" placeholder="Enter address to withdraw your money to" required="true">
     </div>
     <div id="withdraw-message"></div>
     <button type="submit" class="btn btn-primary">Withdraw</button>
