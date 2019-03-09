@@ -7,7 +7,7 @@ contract('PiggyBankContract', function () {
         const contract = await PiggyBank.deployed();
 
         await contract.createPiggyBank(10, {from: accounts[0]});
-        await contract.deposit({value: 10, from: accounts[0]});
+        await contract.deposit({value: 10*10**18, from: accounts[0]});
 
         try {
             await contract.withdraw(accounts[1], {from: accounts[0]});
