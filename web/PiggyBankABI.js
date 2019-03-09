@@ -7,7 +7,7 @@ let abi = [
                 "type": "address"
             }
         ],
-        "name": "accountsToBalance",
+        "name": "accountsToBalances",
         "outputs": [
             {
                 "name": "",
@@ -17,7 +17,7 @@ let abi = [
         "payable": false,
         "stateMutability": "view",
         "type": "function",
-        "signature": "0x10cd9c69"
+        "signature": "0x0f1c707f"
     },
     {
         "constant": true,
@@ -78,5 +78,20 @@ let abi = [
         "stateMutability": "nonpayable",
         "type": "function",
         "signature": "0x51cff8d9"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "viewBalance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x3ff1e05b"
     }
 ]
