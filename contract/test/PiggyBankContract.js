@@ -99,9 +99,7 @@ contract('PiggyBankContract', function () {
 
         await contract.createPiggyBank(10, {from: accounts[0]});
         await contract.deposit({value: 10, from: accounts[0]});
-
-        let beforeBalance = await contract.viewBalance({from: accounts[0]});
-
+        
         try {
             await contract.withdraw(accounts[0], {from: accounts[0]});
         } catch (error) {
@@ -110,7 +108,6 @@ contract('PiggyBankContract', function () {
 
         let afterBalance = await contract.viewBalance({from: accounts[0]});
 
-        assert.notEqual(afterBalance.valueOf(), beforeBalance.valueOf(), "Balance in piggy bank should not be" +
-            "equal after being withdrawn.");
+        assert.equal(afterBalance.valueOf(), 0, "Balance in piggy bank should be 0 after being withdrawn");
     });
 });
