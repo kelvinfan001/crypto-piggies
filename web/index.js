@@ -90,7 +90,7 @@ $('#withdraw-form').submit(function(){
     var withdrawFromAddress = $('#withdrawFromAddress').val();
     var withdrawToAddress = $('#withdrawToAddress').val();
 
-    PiggyBankContract.methods.withdraw(withdrawToAddress).send({from: withdrawFromAddress},
+    PiggyBankContract.methods.withdraw(withdrawToAddress).send({from: withdrawFromAddress, gas: 3000000},
         function(error, result) {
             if (error) {
                 console.log("Bad stuff happened: " + error);
