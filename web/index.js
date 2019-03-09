@@ -4,13 +4,39 @@ if ( typeof web3 != 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 }
 
+var contractAddress = web3.utils.toChecksumAddress('0xbEEA2E4B082eFE7665ceDD95122e309fDb9745cC');
+
 var version = web3.version;
 console.log("using web3 version: " + version);
 
-var contractAddress = web3.utils.toChecksumAddress("0x35c8248250a99615b1c8a2aebdf8759b23d5525d");
-
 var PiggyBankContract = new web3.eth.Contract(abi, contractAddress);
 
+console.log(PiggyBankContract);
+
+$('#create-piggy-form').submit(function() {
+    event.preventDefault();
+    var creatorAddress = $('#creatorAddress').val();
+    var goal = $('#goal').val();
+
+    if (web3.utils.isAddress(creatorAddress) != true) {
+        alert('You did not enter a proper address');
+        return;
+    }
+
+    if (goal == 0) {
+        alert('Your goal cannot be 0.');
+        return;
+    }
+
+    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).send({from: creatorAddress},
+        function (error, result) {
+            if (error) {
+                console.log("error:" + error);
+            } else {
+                $('#create-result').html('Piggy Bank successfully created: ' + result);
+            }
+        });
+});
 
 $('#contract-form').submit(function() {
     event.preventDefault();
