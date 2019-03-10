@@ -124,4 +124,4 @@ let abi = [
         "type": "function",
         "signature": "0xf2777e55"
     }
-]
+];
