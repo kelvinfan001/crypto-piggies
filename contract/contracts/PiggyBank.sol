@@ -6,6 +6,7 @@ contract PiggyBank {
     mapping(address => uint256) public accountsToGoals;
     mapping(address => uint256) public accountsToBalances;
 
+
     /** @dev Creates a new piggy bank with a goal that must be reached before being able to withdraw.
       * @param _goal Goal to be reached before being allowed to withdraw.
       */
@@ -43,4 +44,9 @@ contract PiggyBank {
         require(accountsToGoals[msg.sender] != 0); // require sender to have a piggy bank
         return accountsToBalances[msg.sender];
     }
+
+    function accountHasPiggy() {
+        return accountsToGoals[msg.sender] != 0;
+    }
+
 }
