@@ -73,15 +73,7 @@ a {
     text-shadow: 1px 1px #92badd;
 }
 
-h2 {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display:inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #cccccc;
-}
+
 #account-summary{
     /*padding: 6px 8px;*/
     -webkit-border-radius: 10px 10px 10px 10px;

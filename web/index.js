@@ -15,7 +15,7 @@ if (window.localStorage.getItem("account")) {
 
 
 if(localStorage.getItem("piggyGoal") === "0" || localStorage.getItem("piggyGoal") === null){
-    $("#create-piggie-bank").css("display", "block")
+    $("#create-piggie-bank").css("display", "")
     $("#create-piggie-bank1").css("display", "none")
 }else{
     $("#goal1")[0].innerText = localStorage.getItem("piggyGoal")
@@ -34,7 +34,7 @@ if(localStorage.getItem("piggyGoal") !== "0" && localStorage.getItem("piggyGoal"
 }
 
 
-var contractAddress = web3.utils.toChecksumAddress('0x83dB06c77f38EA37aF2d69cB46a6E8e47AA4a0A2');
+var contractAddress = web3.utils.toChecksumAddress('0xB57201E824D53f24bC98c7987Bc3B0Dcc14120f6');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
