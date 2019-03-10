@@ -4373,10 +4373,16 @@
       "links": {},
       "address": "0x83dB06c77f38EA37aF2d69cB46a6E8e47AA4a0A2",
       "transactionHash": "0x1d29c07ab41b783c4c1d4203da60cb2d21d0ce0afa3737e6090b2a37eaad8aed"
+    },
+    "1552216325729": {
+      "events": {},
+      "links": {},
+      "address": "0x6c2e7323Ff24Fe612BFEa3cC48c5DcF9Cb22B15f",
+      "transactionHash": "0x1d29c07ab41b783c4c1d4203da60cb2d21d0ce0afa3737e6090b2a37eaad8aed"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-03-10T08:52:24.553Z",
+  "updatedAt": "2019-03-10T11:12:21.056Z",
   "devdoc": {
     "methods": {
       "createPiggyBank(uint256)": {
