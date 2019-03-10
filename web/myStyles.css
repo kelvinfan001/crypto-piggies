@@ -7,7 +7,46 @@ body{
     /*width: 100%;*/
     /*height: 100%;*/
 }
+#action-forms{
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    width: 90%;
+    position: relative;
+    background: #92badd;
+    -webkit-box-shadow: 0 10px 40px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,0.3);
+    text-align: center;
+}
 
+.add-padding-item-bottom{
+      padding-bottom: 2rem;
+  }
+.add-padding-item-top{
+    padding-top: 2rem;
+}
+.add-padding-avatar{
+    padding: 1.8rem;
+}
+
+.add-padding-actionForm{
+    padding: 5rem 6rem;
+}
+
+.add-padding-footer{
+    padding: 1rem;
+}
+.add-padding-dashboard{
+    padding: .8rem 2rem;
+}
+.add-padding{
+    padding: 3rem;
+}
+.whitespace{
+    white-space: pre-wrap;
+}
+.displayField{
+    padding: .375rem .75rem;
+}
 
 .loginPromt {
 
@@ -30,6 +69,9 @@ a {
     text-decoration: none;
     font-weight: 400;
 }
+.actionForm-text{
+    text-shadow: 1px 1px #92badd;
+}
 
 h2 {
     text-align: center;
@@ -40,14 +82,45 @@ h2 {
     margin: 40px 8px 10px 8px;
     color: #cccccc;
 }
-
+#account-summary{
+    /*padding: 6px 8px;*/
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    width: 90%;
+    position: relative;
+    background: #92badd;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
+}
 .dashboard{
-    /*z-index: 15;*/
-    box-shadow: white;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    width: 90%;
+    max-width: 1000px;
+    position: relative;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
 
 }
 
 
+#account-summary{
+    border-radius: 10px 10px 10px 10px;
+    /*width: 90%;*/
+    position: relative;
+    padding: 0px;
+}
+
+#action-forms{
+    border-radius: 10px 10px 10px 10px;
+    /*width: 90%;*/
+    position: relative;
+    padding: 0px;
+}
 /* STRUCTURE */
 
 .wrapper {
@@ -69,7 +142,6 @@ h2 {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
-    padding: 30px;
     width: 90%;
     max-width: 450px;
     position: relative;
@@ -281,6 +353,6 @@ input[type=text]:placeholder {
     outline: none;
 }
 
-#icon {
+.icon {
     width:60%;
 }
