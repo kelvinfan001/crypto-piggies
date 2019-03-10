@@ -34,6 +34,7 @@ contract PiggyBank {
 
         require(balance >= goal, "You have not reached your goal yet."); // make sure that the goal has been reached.
         accountsToBalances[msg.sender] = 0;
+        accountsToGoals[msg.sender] = 0;
         _receiver.transfer(balance);
     }
 
@@ -45,8 +46,12 @@ contract PiggyBank {
         return accountsToBalances[msg.sender];
     }
 
-    function accountHasPiggy() {
+    function accountHasPiggy() view public {
         return accountsToGoals[msg.sender] != 0;
+    }
+
+    function viewGoal() view public {
+        return accountsToGoals[msg.sender];
     }
 
 }
