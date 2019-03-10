@@ -50,8 +50,8 @@ contract PiggyBank {
         return accountsToGoals[msg.sender] != 0;
     }
 
-//    function viewGoal() view public returns(uint256){
-//        return accountsToGoals[msg.sender];
-//    }
+    function viewGoal() view public returns(uint256){
+        return accountsToGoals[msg.sender];
+    }
 
 }
