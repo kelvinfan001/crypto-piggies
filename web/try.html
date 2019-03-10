@@ -22,8 +22,8 @@
 
         <!-- Login Form -->
         <form id="account-prompt">
-            <input type="text" id="account" class="fadeIn second" placeholder="Ethereum Account">
-            <input type="submit" class="fadeIn fourth" value="Start your piggie bank!">
+            <input type="text" id="account" class="fadeIn second" placeholder="Your Ethereum Account">
+            <input type="submit" class="fadeIn fourth" value="Enter your Piggy Bank!">
         </form>
 
         <!-- Remind Password -->
@@ -112,13 +112,8 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         crossorigin="anonymous"></script>
-<script>
-    if (window.localStorage.getItem("account")) {
-        $("#accountPrompt").css("display", "none");
-        $("#dashboard").css("display", "flex")
-    } else {
-        $("#accountPrompt").css("display", "flex");
-        $("#dashboard").css("display", "none")
-    }
-</script>
+
+<script src="web3.min.js"></script>
+<script src="PiggyBankABI.js"></script>
+<script src="index.js"></script>
 </html>

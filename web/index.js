@@ -4,7 +4,15 @@ if (typeof web3 != 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
 }
 
-var contractAddress = web3.utils.toChecksumAddress('');
+if (window.localStorage.getItem("account")) {
+    $("#accountPrompt").css("display", "none");
+    $("#dashboard").css("display", "flex")
+} else {
+    $("#accountPrompt").css("display", "flex");
+    $("#dashboard").css("display", "none")
+}
+
+var contractAddress = web3.utils.toChecksumAddress('0xC523f068184BB22C1ceFcc08Eec56D0c6029Af84');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
@@ -23,13 +31,13 @@ if (account) {
 
 function getPiggy(account) {
     var goal, balance;
-    PiggyBankContract.methods.viewGoal().call({from: account},
+    PiggyBankContract.methods.viewGoal().send({from: account},
         (error, result) => {
             if (error) {
                 console.log("view goal error: " + error);
             } else {
                 goal = result;
-                PiggyBankContract.methods.viewBalance().call({from: account},
+                PiggyBankContract.methods.viewBalance().send({from: account},
                     (error, result) => {
                         if (error) {
                             console.log("view balance error " + error);
@@ -141,9 +149,19 @@ $('#withdraw-form').submit(function () {
         });
 });
 
-$('#account-prompt').submit(function () {
+// $('#account-prompt').submit(function () {
+//     event.preventDefault();
+//     var input = $('#account').val();
+//
+//     localStorage.setItem("account", input);
+//     location.reload();
+// });
+console.log("hello")
+$('#account-prompt').on("submit",function () {
     event.preventDefault();
-    var input = $('account').val();
+    var input = $('#account').val();
+    console.log(typeof($('#account').val()))
 
     localStorage.setItem("account", input);
+    location.reload();
 });

@@ -93,5 +93,35 @@ let abi = [
         "stateMutability": "view",
         "type": "function",
         "signature": "0x3ff1e05b"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "accountHasPiggy",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x25eaf4fe"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "viewGoal",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xf2777e55"
     }
 ]
