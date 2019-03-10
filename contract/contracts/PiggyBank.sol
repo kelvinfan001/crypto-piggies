@@ -12,7 +12,7 @@ contract PiggyBank {
       */
     function createPiggyBank(uint256 _goal) public {
         require(_goal > 0, "Your goal must be greater than 0."); // make sure that specified goal is greater than 0.
-        require(accountsToGoals[msg.sender] == 0, "You must not have a piggy bank.");
+//        require(accountsToGoals[msg.sender] == 0, "You must not have a piggy bank.");
         accountsToBalances[msg.sender] = 0;
         accountsToGoals[msg.sender] = _goal;
     }
@@ -46,12 +46,12 @@ contract PiggyBank {
         return accountsToBalances[msg.sender];
     }
 
-    function accountHasPiggy() view public returns(bool){
-        return accountsToGoals[msg.sender] != 0;
-    }
-
-    function viewGoal() view public returns(uint256){
-        return accountsToGoals[msg.sender];
-    }
+//    function accountHasPiggy() view public returns(bool){
+//        return accountsToGoals[msg.sender] != 0;
+//    }
+//
+//    function viewGoal() view public returns(uint256){
+//        return accountsToGoals[msg.sender];
+//    }
 
 }

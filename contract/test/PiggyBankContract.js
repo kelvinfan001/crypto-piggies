@@ -137,8 +137,13 @@ contract('PiggyBankContract', function () {
             err = error;
         }
 
-        let afterBalance = await contract.viewBalance({from: accounts[0]});
+        try {
+            await contract.viewBalance({from: accounts[0]});
+        } catch (error) {
+            err = error;
+        }
 
-        assert.equal(afterBalance.valueOf(), 0, "Balance in piggy bank should be 0 after being withdrawn");
+
+        assert.ok(err instanceof Error, "Balance in piggy bank should be destroyed after being withdrawn and thus cannot be viewed.");
     });
 });
