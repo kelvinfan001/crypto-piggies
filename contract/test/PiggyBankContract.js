@@ -3,7 +3,7 @@ const PiggyBank = artifacts.require('../../contracts/PiggyBank.sol');
 
 contract('PiggyBankContract', function () {
     it('withdraws after reaching goal', async function(){
-        // this test tests if the contract has the same balance before and after the piggy bank was created+destroyed
+        // this test tests if the contract has the same balance before and after the piggyInfo bank was created+destroyed
         const accounts = await web3.eth.getAccounts();
         const contract = await PiggyBank.deployed();
 
@@ -134,7 +134,7 @@ contract('PiggyBankContract', function () {
         await contract.deposit({value: 8, from: accounts[0]});
 
         let balance = await contract.viewBalance({from: accounts[0]});
-        assert.equal(balance, 8, "Balance in this piggy bank should be 8.");
+        assert.equal(balance, 8, "Balance in this piggyInfo bank should be 8.");
 
         contract.deposit({value: 50, from: accounts[0]});
         contract.withdraw(accounts[0], {from: accounts[0]});
@@ -159,7 +159,7 @@ contract('PiggyBankContract', function () {
             err = error;
         }
 
-        assert.ok(err instanceof Error, "Balance in piggy bank should be destroyed after being withdrawn and thus cannot be viewed.");
+        assert.ok(err instanceof Error, "Balance in piggyInfo bank should be destroyed after being withdrawn and thus cannot be viewed.");
     });
 
 
@@ -170,32 +170,32 @@ contract('PiggyBankContract', function () {
         await contract.createPiggyBank(10, {from: accounts[0]});
 
         let goal = await contract.viewGoal({from: accounts[0]});
-        assert.equal(goal, 10, "Goal of the piggy bank should be 10.");
+        assert.equal(goal, 10, "Goal of the piggyInfo bank should be 10.");
 
         // tear down
         await contract.deposit({value: 15, from: accounts[0]});
         await contract.withdraw(accounts[0], {from: accounts[0]});
     });
 
-    it('account has its piggy bank', async function(){
+    it('account has its piggyInfo bank', async function(){
         const accounts = await web3.eth.getAccounts();
         const contract = await PiggyBank.deployed();
 
         await contract.createPiggyBank(10, {from: accounts[0]});
 
         let hasPiggyBank = await contract.accountHasPiggy({from: accounts[0]});
-        assert.equal(hasPiggyBank, true, "The account should have a piggy bank.");
+        assert.equal(hasPiggyBank, true, "The account should have a piggyInfo bank.");
 
         // tear down
         await contract.deposit({value: 15, from: accounts[0]});
         await contract.withdraw(accounts[0], {from: accounts[0]});
     });
 
-    it('account does not have a piggy bank', async function(){
+    it('account does not have a piggyInfo bank', async function(){
         const accounts = await web3.eth.getAccounts();
         const contract = await PiggyBank.deployed();
 
         let hasPiggyBank = await contract.accountHasPiggy({from: accounts[0]});
-        assert.equal(hasPiggyBank, false, "The account should not have a piggy bank.");
+        assert.equal(hasPiggyBank, false, "The account should not have a piggyInfo bank.");
     });
 });

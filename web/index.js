@@ -4,7 +4,7 @@ if (typeof web3 != 'undefined') {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
 }
 
-var contractAddress = web3.utils.toChecksumAddress('0xB57201E824D53f24bC98c7987Bc3B0Dcc14120f6');
+var contractAddress = web3.utils.toChecksumAddress('');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
@@ -13,15 +13,15 @@ var PiggyBankContract = new web3.eth.Contract(abi, contractAddress);
 
 console.log(PiggyBankContract);
 
-var account, piggie;
+var account, piggyInfo;
 
 account = window.localStorage.getItem("account");
 
 if (account) {
-    piggie = getPiggie(account)
+    piggyInfo = getPiggy(account)
 }
 
-function getPiggie(account) {
+function getPiggy(account) {
     var goal, balance;
     PiggyBankContract.methods.viewGoal().call({from: account},
         (error, result) => {
@@ -42,12 +42,12 @@ function getPiggie(account) {
         });
 }
 
-$('#create-piggy-form').submit(function () {
+$('#create-form').submit(function () {
     event.preventDefault();
-    var creatorAddress = $('#creatorAddress').val();
+    // var creatorAddress = $('#creatorAddress').val();
     var goal = $('#goal').val();
 
-    if (web3.utils.isAddress(creatorAddress) != true) {
+    if (web3.utils.isAddress(account) != true) {
         alert('You did not enter a proper address');
         return;
     }
@@ -57,47 +57,51 @@ $('#create-piggy-form').submit(function () {
         return;
     }
 
-    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).send({from: creatorAddress},
+    PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).send({from: account},
         function (error, result) {
             if (error) {
                 console.log("error:" + error);
-                // if account has piggie but not in localstorage
+                // if account has piggyInfo but not in localstorage
             } else {
-                account = creatorAddress;
-                localStorage.setItem("account", account);
-                piggie = {"goal": goal, "balance": 0};
+                // account = creatorAddress;
+                // localStorage.setItem("account", account);
+                // piggyInfo = {"goal": goal, "balance": 0};
+                piggyInfo.goal = goal;
                 $('#create-result').html('Piggy Bank successfully created: ' + result);
             }
         })//.bind(localstorage);
 });
 
-$('#contract-form').submit(function () {
+$('#deposit-form').submit(function () {
     event.preventDefault();
-    var fromAddress = $('#fromAddress').val();
+    // var fromAddress = $('#fromAddress').val();
     var amount = $('#amount').val();
 
-    if (web3.utils.isAddress(fromAddress) != true) {
+    // the following conditional should actually be redundant, but we will leave it here for now.
+    if (web3.utils.isAddress(account) != true) {
         alert('You did not enter a proper address');
         return;
     }
 
     if (amount == 0) {
-        alert('Please put in more than 0 in the piggy bank.');
+        alert('Please put in more than 0 in your piggy bank.');
         return;
     }
 
-    PiggyBankContract.methods.deposit().send({from: fromAddress, value: web3.utils.toWei(amount, 'ether')},
+    PiggyBankContract.methods.deposit().send({from: account, value: web3.utils.toWei(amount, 'ether')},
         function (error, result) {
             if (error) {
-                console.log("error:" + error);
+                console.log("error: " + error);
             } else {
-                oldBalance = account.piggie.balance;
-                account.piggie.balance = oldBalance + amount;
+                // oldBalance = account.piggie.balance;
+                // account.piggie.balance = oldBalance + amount;
+                piggyInfo.balance += amount; // update piggyInfo's balance
                 $('#deposit-result').html('Successful Transaction: <b>' + result + '</b>');
             }
         });
 });
 
+// TODO: !!!! is the following form redundant under the current design of our UI?
 $('#get-balance-form').submit(function () {
     event.preventDefault();
     var addressBalance = $('#addressBalance').val();
@@ -111,7 +115,7 @@ $('#get-balance-form').submit(function () {
         function (error, result) {
             if (error) {
                 console.log("error: " + error);
-                $('#the-balance').html('<b>This address does not have a piggy bank.</b>');
+                $('#the-balance').html('<b>This address does not have a piggyInfo bank.</b>');
             } else {
                 console.log("balance: " + result);
                 $('#the-balance').html('<b>Current Balance: </b>' + web3.utils.fromWei(result, "ether"));
@@ -122,7 +126,7 @@ $('#get-balance-form').submit(function () {
 $('#withdraw-form').submit(function () {
     event.preventDefault();
 
-    var withdrawFromAddress = $('#withdrawFromAddress').val();
+    var withdrawFromAddress = account;
     var withdrawToAddress = $('#withdrawToAddress').val();
 
     PiggyBankContract.methods.withdraw(withdrawToAddress).send({from: withdrawFromAddress, gas: 3000000},
@@ -131,8 +135,15 @@ $('#withdraw-form').submit(function () {
                 console.log("Bad stuff happened: " + error);
                 $('#withdraw-message').html('You have not reached your goal.');
             } else {
-                account.piggie = "";
+                piggyInfo.balance = 0;
                 $('#withdraw-message').html('Withdraw successful!');
             }
         });
+});
+
+$('#account-prompt').submit(function () {
+    event.preventDefault();
+    var input = $('account').val();
+
+    localStorage.setItem("account", input);
 });

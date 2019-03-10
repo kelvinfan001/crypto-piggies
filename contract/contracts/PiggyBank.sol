@@ -7,7 +7,7 @@ contract PiggyBank {
     mapping(address => uint256) public accountsToBalances;
 
 
-    /** @dev Creates a new piggy bank with a goal that must be reached before being able to withdraw.
+    /** @dev Creates a new piggyInfo bank with a goal that must be reached before being able to withdraw.
       * @param _goal Goal to be reached before being allowed to withdraw.
       */
     function createPiggyBank(uint256 _goal) public {
@@ -17,15 +17,15 @@ contract PiggyBank {
         accountsToGoals[msg.sender] = _goal;
     }
 
-    /** @dev Deposits into sender's piggy bank, if it exists.
+    /** @dev Deposits into sender's piggyInfo bank, if it exists.
       */
     function deposit() external payable {
         require(msg.value > 0, "You cannot deposit 0."); // make sure that user is depositing more than 0.
-        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggy bank.
+        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank.
         accountsToBalances[msg.sender] += msg.value;
     }
 
-    /** @dev Withdraws from sender's piggy bank and deposits that into a specified account.
+    /** @dev Withdraws from sender's piggyInfo bank and deposits that into a specified account.
       * @param _receiver The account to deposit the withdrew money into.
       */
     function withdraw(address payable _receiver) external {
@@ -38,11 +38,11 @@ contract PiggyBank {
         _receiver.transfer(balance);
     }
 
-    /** @dev Function to view the current balance in sender's piggy bank.
-      * @return Returns the current balance in sender's piggy bank.
+    /** @dev Function to view the current balance in sender's piggyInfo bank.
+      * @return Returns the current balance in sender's piggyInfo bank.
       */
     function viewBalance() public view returns(uint256) {
-        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggy bank
+        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank
         return accountsToBalances[msg.sender];
     }
 
