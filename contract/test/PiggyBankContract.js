@@ -146,4 +146,37 @@ contract('PiggyBankContract', function () {
 
         assert.ok(err instanceof Error, "Balance in piggy bank should be destroyed after being withdrawn and thus cannot be viewed.");
     });
+
+
+    it('views goal', async function(){
+        const accounts = await web3.eth.getAccounts();
+        const contract = await PiggyBank.deployed();
+
+        await contract.createPiggyBank(10, {from: accounts[0]});
+
+        let goal = await contract.viewGoal({from: accounts[0]});
+        assert.equal(goal, 10, "Goal of the piggy bank should be 10.");
+    });
+
+    it('account has its piggy bank', async function(){
+        const accounts = await web3.eth.getAccounts();
+        const contract = await PiggyBank.deployed();
+
+        await contract.createPiggyBank(10, {from: accounts[0]});
+
+        let hasPiggyBank = await contract.accountHasPiggy({from: accounts[0]});
+        assert.equal(hasPiggyBank, true, "The account should have a piggy bank.");
+    });
+
+    it('account does not have a piggy bank', async function(){
+        const accounts = await web3.eth.getAccounts();
+        const contract = await PiggyBank.deployed();
+
+        // tear down
+        await contract.deposit({value: 15, from: accounts[0]});
+        await contract.withdraw(accounts[0], {from: accounts[0]});
+
+        let hasPiggyBank = await contract.accountHasPiggy({from: accounts[0]});
+        assert.equal(hasPiggyBank, false, "The account should not have a piggy bank.");
+    });
 });
