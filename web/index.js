@@ -24,7 +24,7 @@ if(localStorage.getItem("piggyGoal") === "0" || localStorage.getItem("piggyGoal"
 }
 
 if(localStorage.getItem("piggyGoal") !== "0" && localStorage.getItem("piggyGoal") !== null){
-    if(parseInt(localStorage.getItem("piggyBalance")) > parseInt(localStorage.getItem("piggyGoal"))){
+    if(parseInt(localStorage.getItem("piggyBalance")) >= parseInt(localStorage.getItem("piggyGoal"))){
         $("#withdraw-form1").css("display","none");
         $("#withdraw-form").css("display","block");
     }else{
@@ -168,9 +168,9 @@ $('#withdraw-form').on("click",function () {
     event.preventDefault();
 
     var withdrawFromAddress = account;
-    var withdrawToAddress = $('#withdrawToAddress').val();
+    // var withdrawToAddress = $('#withdrawToAddress').val();
 
-    PiggyBankContract.methods.withdraw(withdrawToAddress).send({from: withdrawFromAddress, gas: 3000000},
+    PiggyBankContract.methods.withdraw(withdrawFromAddress).send({from: withdrawFromAddress, gas: 3000000},
         function (error, result) {
             if (error) {
                 console.log("Bad stuff happened: " + error);
