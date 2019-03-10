@@ -1,10 +1,10 @@
 if ( typeof web3 != 'undefined') {
     web3 = new Web3(web3.currentProvider);
 } else {
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+    // web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
 }
 
-var contractAddress = web3.utils.toChecksumAddress('0x1654A90A9659d5482969F05F30350405f29b9310');
+// var contractAddress = web3.utils.toChecksumAddress('0x2203833bAa8576b8D3e7016Ece5197abbc43dAE5');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
