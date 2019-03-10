@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>try</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="myStyles.css"/>
 </head>
 <body>
@@ -16,31 +17,126 @@
 
         <!-- Icon -->
         <div class="fadeIn first">
-            <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/49072/preview.svg" id="icon" alt="User Icon" />
+            <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/49072/preview.svg" class="icon" alt="User Icon"/>
         </div>
 
         <!-- Login Form -->
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ethereum Account">
-            <input type="submit" class="fadeIn fourth" value="Start your piggie bank!">
+        <form id="account-prompt">
+            <input type="text" id="account" class="fadeIn second" placeholder="Your Ethereum Account">
+            <input type="submit" class="fadeIn fourth" value="Enter your Piggy Bank!">
         </form>
 
-        <!-- Remind Passowrd -->
+        <!-- Remind Password -->
 
     </div>
 </div>
+<div id="dashboard" class="wrapper fadeInDown third">
+    <div class="dashboard">
+        <div class="row add-padding-dashboard">
+            <div id="account-summary fadeIn third" class="col-4">
+                <div class="add-padding">
+                    <!--Avatar-->
+                    <div class="add-padding-avatar">
+                        <img src="./asset/avatar.png" id="avatar" alt="User Icon"/>
+                    </div>
+                    <!--Summary-->
+                    <div id="summary" class="row align-items-md-start">
+                        <div class="col">
+                            <div class="input-group mb-3 displayField">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-center whitespace">  Goal:   </span>
+                                </div>
+                                <p id="goal1" class="text-center  form-control">0</p>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col">
+                            <div class="input-group mb-3 displayField">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-center">Balance: </span>
+                                </div>
+                                <p id="balance" class="text-center  form-control">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="noSummary" class="row" style="display: none">
+                        <div class="add-padding-item-top-bottom">
+                            <form>
+                                <input type="text" disabled placeholder="Piggy missing!"/>
+                            </form>
+                        </div>
 
+                    </div>
+                </div>
+
+                <div class="add-padding-footer">
+                    <div class="row justify-content-md-center">
+                        <div class="col-8 text-center">
+                            <!--btn-failure when balance doesn't surpass goal-->
+                            <button id="withdraw-form1" type="button" style="display: block" class="btn btn-dark">Break
+                                the piggy!
+                            </button>
+                            <button id="withdraw-form" type="button" style="display: none" class="btn btn-success">Break
+                                the piggy!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="action-forms fadeIn third" class="col-8">
+                <div class="add-padding-actionForm">
+                    <div class="row">
+                        <div class="col add-padding-item-top-bottom">
+                            <div id="adopt">
+                                <div class="row">
+                                    <h2 class="col actionForm-text">Adopt your piggie</h2>
+                                </div>
+                                <form id="create-form">
+                                    <input type="text" id="goal" placeholder="Your goal of savings"/>
+                                    <input type="submit" style="display:none" id="create-piggie-bank"
+                                           value="Get your piggie bank"/>
+                                    <button id="create-piggie-bank1" type="button" class="btn btn-dark">Get your
+                                        piggie
+                                    </button>
+                                </form>
+                            </div>
+                            <div id="deposit" style="display: none">
+                                <div class="row">
+                                    <h2 class="col actionForm-text">Feed your piggie</h2>
+                                </div>
+                                <form id="deposit-form">
+                                    <input type="text" id="amount" placeholder="how many to deposit"/>
+                                    <input type="submit" id="deposit-to-piggie-bank" value="Insert the coin"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col align-self-end">
+
+                            <button id="logout" class="btn btn-danger">Log out</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <!--<div id="accountDetail" class="wrapper dashboard fadeInDown">-->
-    <!--&lt;!&ndash;<p>hello</p>&ndash;&gt;-->
+<!--&lt;!&ndash;<p>hello</p>&ndash;&gt;-->
 <!--</div>-->
 
 </body>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>
-    if(window.localStorage.getItem("account")){
-        $("#accountPrompt").css("display","none");
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        crossorigin="anonymous"></script>
 
-    }
-</script>
+<script src="web3.min.js"></script>
+<script src="PiggyBankABI.js"></script>
+<script src="index.js"></script>
 </html>
