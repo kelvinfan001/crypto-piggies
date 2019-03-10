@@ -3,6 +3,7 @@ if (typeof web3 != 'undefined') {
 } else {
     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"));
 }
+var account, piggyGoal, piggyBalance;
 
 if (window.localStorage.getItem("account")) {
     $("#accountPrompt").css("display", "none");
@@ -12,7 +13,28 @@ if (window.localStorage.getItem("account")) {
     $("#dashboard").css("display", "none")
 }
 
-var contractAddress = web3.utils.toChecksumAddress('0xC523f068184BB22C1ceFcc08Eec56D0c6029Af84');
+
+if(localStorage.getItem("piggyGoal") === "0" || localStorage.getItem("piggyGoal") === null){
+    $("#create-piggie-bank").css("display", "block")
+    $("#create-piggie-bank1").css("display", "none")
+}else{
+    $("#goal1")[0].innerText = localStorage.getItem("piggyGoal")
+    $("#balance")[0].innerText = localStorage.getItem("piggyBalance")
+    // $("#").value = localStorage.getItem("piggieGoal")
+}
+
+if(localStorage.getItem("piggyGoal") !== "0" && localStorage.getItem("piggyGoal") !== null){
+    if(parseInt(localStorage.getItem("piggyBalance")) > parseInt(localStorage.getItem("piggyGoal"))){
+        $("#withdraw-form1").css("display","none");
+        $("#withdraw-form").css("display","block");
+    }else{
+        $("#withdraw-form1").css("display","block");
+        $("#withdraw-form").css("display","none");
+    }
+}
+
+
+var contractAddress = web3.utils.toChecksumAddress('0x83dB06c77f38EA37aF2d69cB46a6E8e47AA4a0A2');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
@@ -21,29 +43,35 @@ var PiggyBankContract = new web3.eth.Contract(abi, contractAddress);
 
 console.log(PiggyBankContract);
 
-var account, piggyInfo;
+
 
 account = window.localStorage.getItem("account");
+piggyGoal = window.localStorage.getItem("piggyGoal");
+piggyBalance = window.localStorage.getItem("piggyBalance");
 
-if (account) {
-    piggyInfo = getPiggy(account)
+
+if (account && !(localStorage.getItem("piggyGoal"))) {
+    // piggyInfo = getPiggy(account)
+    getPiggy(account);
 }
 
 function getPiggy(account) {
     var goal, balance;
-    PiggyBankContract.methods.viewGoal().send({from: account},
-        (error, result) => {
+    PiggyBankContract.methods.viewGoal().call({from: account},
+        function (error, result) {
             if (error) {
                 console.log("view goal error: " + error);
             } else {
-                goal = result;
-                PiggyBankContract.methods.viewBalance().send({from: account},
-                    (error, result) => {
+                piggyGoal = result / 10**18;
+                localStorage.setItem("piggyGoal", piggyGoal)
+                PiggyBankContract.methods.viewBalance().call({from: account},
+                    function (error, result) {
                         if (error) {
                             console.log("view balance error " + error);
                         } else {
-                            balance = result;
-                            return {"goal": goal, "balance": balance};
+                            piggyBalance = result / 10**18;
+                            localStorage.setItem("piggyBalance", piggyBalance)
+                            location.reload();
                         }
                     })
             }
@@ -68,22 +96,24 @@ $('#create-form').submit(function () {
     PiggyBankContract.methods.createPiggyBank(web3.utils.toWei(goal, 'ether')).send({from: account},
         function (error, result) {
             if (error) {
-                console.log("error:" + error);
+                alert("error:" + error);
                 // if account has piggyInfo but not in localstorage
             } else {
                 // account = creatorAddress;
                 // localStorage.setItem("account", account);
                 // piggyInfo = {"goal": goal, "balance": 0};
-                piggyInfo.goal = goal;
-                $('#create-result').html('Piggy Bank successfully created: ' + result);
+                piggyGoal = goal;
+                localStorage.setItem("piggyGoal",piggyGoal);
+                // $('#create-result').html('Piggy Bank successfully created: ' + result);
+                location.reload();
             }
         })//.bind(localstorage);
 });
 
-$('#deposit-form').submit(function () {
+$('#deposit-form').on("submit",function () {
     event.preventDefault();
     // var fromAddress = $('#fromAddress').val();
-    var amount = $('#amount').val();
+    var amount = parseInt($('#amount').val());
 
     // the following conditional should actually be redundant, but we will leave it here for now.
     if (web3.utils.isAddress(account) != true) {
@@ -96,15 +126,18 @@ $('#deposit-form').submit(function () {
         return;
     }
 
-    PiggyBankContract.methods.deposit().send({from: account, value: web3.utils.toWei(amount, 'ether')},
+    PiggyBankContract.methods.deposit().send({from: account, value: amount * 10**18},
         function (error, result) {
             if (error) {
                 console.log("error: " + error);
             } else {
                 // oldBalance = account.piggie.balance;
                 // account.piggie.balance = oldBalance + amount;
-                piggyInfo.balance += amount; // update piggyInfo's balance
-                $('#deposit-result').html('Successful Transaction: <b>' + result + '</b>');
+                piggyBalance = parseInt(localStorage.getItem("piggyBalance"));
+                piggyBalance += amount; // update piggyInfo's balance
+                localStorage.setItem("piggyBalance", piggyBalance);
+                location.reload();
+                // $('#deposit-result').html('Successful Transaction: <b>' + result + '</b>');
             }
         });
 });
@@ -131,7 +164,7 @@ $('#get-balance-form').submit(function () {
         });
 });
 
-$('#withdraw-form').submit(function () {
+$('#withdraw-form').on("click",function () {
     event.preventDefault();
 
     var withdrawFromAddress = account;
@@ -141,10 +174,15 @@ $('#withdraw-form').submit(function () {
         function (error, result) {
             if (error) {
                 console.log("Bad stuff happened: " + error);
-                $('#withdraw-message').html('You have not reached your goal.');
+                alert('You have not reached your goal.');
+                // $('#withdraw-message').html('You have not reached your goal.');
             } else {
-                piggyInfo.balance = 0;
-                $('#withdraw-message').html('Withdraw successful!');
+                piggyBalance = 0;
+                localStorage.setItem("piggyGoal","0");
+                localStorage.setItem("piggyBalance","0");
+                confirm("Withdraw successful!");
+                location.reload();
+                // $('#withdraw-message').html('Withdraw successful!');
             }
         });
 });
@@ -156,8 +194,7 @@ $('#withdraw-form').submit(function () {
 //     localStorage.setItem("account", input);
 //     location.reload();
 // });
-console.log("hello")
-$('#account-prompt').on("submit",function () {
+$('#account-prompt').on("submit", function () {
     event.preventDefault();
     var input = $('#account').val();
     console.log(typeof($('#account').val()))

@@ -46,7 +46,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text text-center whitespace">  Goal:   </span>
                                 </div>
-                                <p class="text-center  form-control">0</p>
+                                <p id="goal1" class="text-center  form-control">0</p>
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -55,7 +55,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text text-center">Balance: </span>
                                 </div>
-                                <p class="text-center  form-control">0</p>
+                                <p id="balance" class="text-center  form-control">0</p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,8 @@
                     <div class="row justify-content-md-center">
                         <div calss="col-8">
                             <!--btn-failure when balance doesn't surpass goal-->
-                            <button type="button" class="btn btn-dark">Break the piggy!</button>
+                            <button id="withdraw-form1" type="button" style="display: block" class="btn btn-dark">Break the piggy!</button>
+                            <button id="withdraw-form" type="button" style="display: none" class="btn btn-success">Break the piggy!</button>
                         </div>
                     </div>
                 </div>
@@ -80,8 +81,8 @@
                             </div>
                             <form id="create-form">
                                 <input type="text" id="goal" placeholder="Your goal of savings"/>
-                                <input type="submit" style="display:none" id="create-piggie-bank" disabled value="Get your piggie bank"/>
-                                <button type="button" class="btn btn-dark">Get your piggie</button>
+                                <input type="submit" style="display:none" id="create-piggie-bank" value="Get your piggie bank"/>
+                                <button id="create-piggie-bank1" type="button" class="btn btn-dark">Get your piggie</button>
                             </form>
                         </div>
                         <div class="w-100"></div>

@@ -42,7 +42,7 @@ contract PiggyBank {
       * @return Returns the current balance in sender's piggyInfo bank.
       */
     function viewBalance() public view returns(uint256) {
-        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank
+//        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank
         return accountsToBalances[msg.sender];
     }
 
