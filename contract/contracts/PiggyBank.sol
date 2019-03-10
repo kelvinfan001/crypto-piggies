@@ -46,10 +46,10 @@ contract PiggyBank {
         return accountsToBalances[msg.sender];
     }
 
-//    function accountHasPiggy() view public returns(bool){
-//        return accountsToGoals[msg.sender] != 0;
-//    }
-//
+    function accountHasPiggy() view public returns(bool){
+        return accountsToGoals[msg.sender] != 0;
+    }
+
 //    function viewGoal() view public returns(uint256){
 //        return accountsToGoals[msg.sender];
 //    }
