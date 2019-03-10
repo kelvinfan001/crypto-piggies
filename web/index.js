@@ -17,7 +17,10 @@ if (window.localStorage.getItem("account")) {
 if(localStorage.getItem("piggyGoal") === "0" || localStorage.getItem("piggyGoal") === null){
     $("#create-piggie-bank").css("display", "")
     $("#create-piggie-bank1").css("display", "none")
+    $("#goal").prop("disabled", false);
+
 }else{
+    $("#goal").prop("disabled", true);
     $("#goal1")[0].innerText = localStorage.getItem("piggyGoal")
     $("#balance")[0].innerText = localStorage.getItem("piggyBalance")
     // $("#").value = localStorage.getItem("piggieGoal")
