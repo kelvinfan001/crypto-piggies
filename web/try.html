@@ -30,17 +30,17 @@
 
     </div>
 </div>
-<div id="dashboard" class="wrapper fadeInDown">
+<div id="dashboard" class="wrapper fadeInDown third">
     <div class="dashboard">
         <div class="row add-padding-dashboard">
-            <div id="account-summary fadeIn first" class="col-4">
+            <div id="account-summary fadeIn third" class="col-4">
                 <div class="add-padding">
                     <!--Avatar-->
                     <div class="add-padding-avatar">
                         <img src="./asset/avatar.png" id="avatar" alt="User Icon"/>
                     </div>
                     <!--Summary-->
-                    <div class="row align-items-md-start">
+                    <div id="summary" class="row align-items-md-start">
                         <div class="col">
                             <div class="input-group mb-3 displayField">
                                 <div class="input-group-prepend">
@@ -59,41 +59,63 @@
                             </div>
                         </div>
                     </div>
+                    <div id="noSummary" class="row" style="display: none">
+                        <div class="add-padding-item-top-bottom">
+                            <form>
+                                <input type="text" disabled placeholder="Piggy missing!"/>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div class="add-padding-footer">
                     <div class="row justify-content-md-center">
                         <div class="col-8 text-center">
                             <!--btn-failure when balance doesn't surpass goal-->
-                            <button id="withdraw-form1" type="button" style="display: block" class="btn btn-dark">Break the piggy!</button>
-                            <button id="withdraw-form" type="button" style="display: none" class="btn btn-success">Break the piggy!</button>
+                            <button id="withdraw-form1" type="button" style="display: block" class="btn btn-dark">Break
+                                the piggy!
+                            </button>
+                            <button id="withdraw-form" type="button" style="display: none" class="btn btn-success">Break
+                                the piggy!
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="action-forms fadeIn second" class="col-8">
+            <div id="action-forms fadeIn third" class="col-8">
                 <div class="add-padding-actionForm">
                     <div class="row">
-                        <div class="col add-padding-item-bottom">
-                            <div class="row">
-                                <h2 class="col-10 actionForm-text">Adopt your piggie</h2>
+                        <div class="col add-padding-item-top-bottom">
+                            <div id="adopt">
+                                <div class="row">
+                                    <h2 class="col actionForm-text">Adopt your piggie</h2>
+                                </div>
+                                <form id="create-form">
+                                    <input type="text" id="goal" placeholder="Your goal of savings"/>
+                                    <input type="submit" style="display:none" id="create-piggie-bank"
+                                           value="Get your piggie bank"/>
+                                    <button id="create-piggie-bank1" type="button" class="btn btn-dark">Get your
+                                        piggie
+                                    </button>
+                                </form>
                             </div>
-                            <form id="create-form">
-                                <input type="text" id="goal" placeholder="Your goal of savings"/>
-                                <input type="submit" style="display:none" id="create-piggie-bank" value="Get your piggie bank"/>
-                                <button id="create-piggie-bank1" type="button" class="btn btn-dark">Get your piggie</button>
-                            </form>
+                            <div id="deposit" style="display: none">
+                                <div class="row">
+                                    <h2 class="col actionForm-text">Feed your piggie</h2>
+                                </div>
+                                <form id="deposit-form">
+                                    <input type="text" id="amount" placeholder="how many to deposit"/>
+                                    <input type="submit" id="deposit-to-piggie-bank" value="Insert the coin"/>
+                                </form>
+                            </div>
                         </div>
-                        <div class="w-100"></div>
-                        <div class="col add-padding-item-top">
-                            <div class="row">
-                                <h2 class="col-10 actionForm-text">Feed your piggie</h2>
-                            </div>
-                            <form id="deposit-form">
-                                <input type="text" id="amount" placeholder="how many to deposit"/>
-                                <input type="submit" id="deposit-to-piggie-bank" value="Insert the coin"/>
-                            </form>
+                    </div>
+                    <div class="row">
+                        <div class="col align-self-end">
+
+                            <button id="logout" class="btn btn-danger">Log out</button>
 
                         </div>
                     </div>

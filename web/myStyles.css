@@ -21,8 +21,10 @@ body{
 .add-padding-item-bottom{
       padding-bottom: 2rem;
   }
-.add-padding-item-top{
-    padding-top: 2rem;
+
+.add-padding-item-top-bottom{
+    padding-top: 3rem;
+    padding-bottom: 2.5rem;
 }
 .add-padding-avatar{
     padding: 1.8rem;
