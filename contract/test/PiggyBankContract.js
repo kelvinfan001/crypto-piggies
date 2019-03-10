@@ -143,7 +143,6 @@ contract('PiggyBankContract', function () {
             err = error;
         }
 
-
         assert.ok(err instanceof Error, "Balance in piggy bank should be destroyed after being withdrawn and thus cannot be viewed.");
     });
 
