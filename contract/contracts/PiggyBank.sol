@@ -23,36 +23,6 @@ contract PiggyBank {
         require(msg.value > 0, "You cannot deposit 0."); // make sure that user is depositing more than 0.
         require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank.
         accountsToBalances[msg.sender] += msg.value;
-
-        // use something such as Oracleize to make an HTTP request that will call the following bash command
-//        curl 'https://services.totlesystem.com' -X POST \
-//
-//        -H 'Accept: application/json, text/plain, */*' \
-//
-//        -H 'Content-Type: application/json;charset=UTF-8' \
-//
-//        --data-binary ‘{
-//
-//            "address": // address of our piggy bank smart contract,
-//
-//            "swap": {
-//
-//            “from”: // ether,
-//
-//            “to”: // some sort of stable coin, such as Dai,
-//
-//            “amount”: // deposit amount,
-//
-//            "minFillPercent": 100
-//
-//            "minSlippagePercent": 3
-//
-//          },
-//
-//        "breakdown": true
-//
-//        }' //
-
     }
 
     /** @dev Withdraws from sender's piggyInfo bank and deposits that into a specified account.
@@ -72,7 +42,7 @@ contract PiggyBank {
       * @return Returns the current balance in sender's piggyInfo bank.
       */
     function viewBalance() public view returns(uint256) {
-//        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank
+        //        require(accountsToGoals[msg.sender] != 0); // require sender to have a piggyInfo bank
         return accountsToBalances[msg.sender];
     }
 

@@ -45,7 +45,7 @@ if (localStorage.getItem("piggyGoal") !== "0" && localStorage.getItem("piggyGoal
 }
 
 
-var contractAddress = web3.utils.toChecksumAddress('0x6c2e7323Ff24Fe612BFEa3cC48c5DcF9Cb22B15f');
+var contractAddress = web3.utils.toChecksumAddress('0x02e050D773E043bb484FC6A2c452649551a41334');
 
 var version = web3.version;
 console.log("using web3 version: " + version);
